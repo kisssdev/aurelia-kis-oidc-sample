@@ -1,0 +1,93 @@
+<template>
+  <h1>The aurelia-kis-oidc plugin demo</h1>
+
+  <ul>
+    <li>
+      This is an <strong>aurelia application</strong> with <strong>OpenID Connect</strong> authentication (implicit
+      flow) that calls an <strong>OAuth2</strong> (bearer token) protected web api.
+    </li>
+    <li>
+      The OpenID Connect and OAuth2 authentication is provided by the
+      <strong><a href="https://github.com/kisssdev/aurelia-kis-oidc">aurelia-kis-oidc</a></strong> plugin.
+    </li>
+    <li>The Identity Provider is <strong>Microsoft Azure Active Directory B2C</strong>.</li>
+    <li>
+      For the purpose of the demo, the <strong>access token validity</strong> is set to <strong>5 mn</strong> (rather
+      than 1 hour by default) and the <strong>session duration</strong> is set to <strong>15 mn</strong> (rather than 1
+      day).
+    </li>
+    <li>
+      When the access token is expired but the session is still valid, the plugin will transparently try a silent login.
+    </li>
+    <li>
+      When the access token <strong>and</strong> the session are expired, the plugin will prompt the user to sign-in again.
+    </li>
+  </ul>
+
+  <ol class="list-bullets">
+    <li>
+      First sign in with your social account on Azure B2C to get an access token.
+      <p>
+        <button disabled.bind="connection.isUserLoggedIn" click.trigger="connection.loginUser()">
+          Sign in
+        </button>
+      </p>
+      <div if.bind="connection.isUserLoggedIn">
+        <i class="fas fa-check-circle green"></i> Successfully signed in
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>userId</strong></td>
+              <td><code>${connection.userId}</code></td>
+            </tr>
+            <tr>
+              <td><strong>userName</strong></td>
+              <td><code>${connection.userName}</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </li>
+    <li if.bind="connection.isUserLoggedIn">
+      Then call the protected web api with the previously acquired access token.
+      <div if.bind="!tokenExpired">
+        <i class="fas fa-check-circle green"></i> Valid access token <em>(expires in ${tokenExpiresIn}s)</em>
+      </div>
+      <div if.bind="tokenExpired">
+        <i class="fas fa-exclamation-circle red"></i> Expired access token
+        <p class="explanation">
+          The token is <strong>expired</strong>. A <strong>silent login</strong> will occur during the next web api call
+          in order to get a fresh token. Click on the button to see it in action.
+        </p>
+        <p class="explanation">
+          Note that if your session has also <strong>expired</strong>, the silent login will failed and you will be
+          prompted to sign in again.
+        </p>
+      </div>
+      <p>
+        <button disabled.bind="callInProgress || !connection.isUserLoggedIn" click.trigger="getAzureTime()">
+          <i if.bind="callInProgress" class="fas fa-spinner fa-spin white"></i> Call protected web api
+        </button>
+      </p>
+      <p class="action" if.bind="connection.inProgress"><i class="fas fa-sync-alt fa-spin action"></i> Silent login in progress...</p>
+      <div>
+        <table if.bind="result != null">
+          <tbody>
+            <tr>
+              <td><strong>web api result</strong></td>
+              <td><code>${result}</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </li>
+    <li if.bind="connection.isUserLoggedIn">
+      Finally you can sign out.
+      <p>
+        <button disabled.bind="!connection.isUserLoggedIn" click.trigger="connection.logoutUser()">
+          Sign out
+        </button>
+      </p>
+    </li>
+  </ol>
+</template>

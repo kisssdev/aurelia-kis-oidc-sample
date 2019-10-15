@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+
+html,
+button,
+input,
+select,
+textarea {
+  /* Set your content font stack here: */
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+html,
+body,
+#root,
+#layout {
+  height: 100%;
+  margin: 0;
+}
+
+button {
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: steelblue;
+  border: 0;
+  padding: 0.375rem 2rem;
+  font-size: 1rem;
+  line-height: 1.2;
+  box-shadow: 3px 3px 5px 0 #aaa;
+}
+button:hover {
+  box-shadow: none;
+}
+button:not(:disabled) {
+  cursor: pointer !important;
+}
+button:disabled {
+  background-color: silver;
+  color: #ddd;
+  box-shadow: none;
+}
+
+p {
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
+}
+
+code {
+  margin-left: 1em;
+}
+
+.content {
+  margin: 1em;
+  padding: 1em;
+  line-height: 1.6em;
+  font-size: 19px;
+}
+
+ol.list-bullets {
+  position: relative;
+  list-style: none;
+  counter-reset: listNumbering;
+  padding-left: 25px;
+}
+
+/* vertical bar */
+.list-bullets:before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  left: 14px;
+  width: 2px;
+  background: #ddd;
+  z-index: 1;
+}
+
+/* bullets */
+ol.list-bullets li:before {
+  content: counter(listNumbering);
+  position: absolute;
+  top: 18px;
+  left: -27px;
+  width: 30px;
+  height: 30px;
+  background: steelblue;
+  border: 2px solid white;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 2;
+  font-size: 16px;
+  color: white;
+}
+
+ol.list-bullets li:first-child:before {
+  top: -2px;
+}
+
+ol.list-bullets li {
+  counter-increment: listNumbering;
+  position: relative;
+  padding: 20px 0 20px 20px;
+  text-align: justify;
+  z-index: 3;
+}
+
+ol.list-bullets li:first-child {
+  padding-top: 0;
+}
+
+p.explanation {
+  color: steelblue;
+  font-style: italic;
+}
+
+p.action {
+  font-size: 15px;
+  border: 1px solid silver;
+  font-style: italic;
+  text-align: center;
+}
+
+.action {
+  color: #999;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.white {
+  color: white;
+}
