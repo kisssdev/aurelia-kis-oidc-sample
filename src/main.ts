@@ -38,7 +38,7 @@ function configureOpenidPlugin(aurelia: Aurelia): PluginConfiguration {
       }),
     userManagerSettings: {
       // Azure B2C
-      authority: 'https://kisssb2c.b2clogin.com/tfp/kisssb2c.onmicrosoft.com/b2c_1_sample_signin/v2.0',
+      authority: 'https://kisssb2c.b2clogin.com/tfp/kisssb2c.onmicrosoft.com/b2c_1_aurelia_kis_oidc_sample/v2.0',
       client_id: '8f76ed56-b4dc-4244-a3f5-5683d800d4a3',
       accessTokenExpiringNotificationTime: 60,
       automaticSilentRenew: false,
