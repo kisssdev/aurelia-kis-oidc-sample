@@ -26,9 +26,9 @@ export class Home {
     this.tokenExpiresIn = this.connection.expiresIn;
   }
 
-
   async getAzureTime() {
     this.callInProgress = true;
+    this.result = null;
     return this.service
       .getAzureTime()
       .then(result => {
