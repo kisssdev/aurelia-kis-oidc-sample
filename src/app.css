@@ -6,7 +6,7 @@ input,
 select,
 textarea {
   /* Set your content font stack here: */
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
@@ -14,6 +14,10 @@ html,
 body {
   height: 100%;
   margin: 0;
+}
+hr {
+  border-top: 1px #ddd solid;
+  border-bottom: 0;
 }
 button {
   display: inline-block;
@@ -51,56 +55,82 @@ code {
   margin-left: 1em;
 }
 .content {
-  margin: 1em;
-  padding: 1em;
-  line-height: 1.6em;
+  margin: 15px;
+  padding: 15px;
+  line-height: 1.5em;
   font-size: 19px;
 }
-ol.list-bullets {
+ol {
   position: relative;
   list-style: none;
   counter-reset: listNumbering;
   padding-left: 25px;
 }
 /* vertical bar */
-.list-bullets:before {
-  content: "";
+ol:before {
+  content: '';
   position: absolute;
   top: 20px;
   bottom: 20px;
-  left: 14px;
-  width: 2px;
+  left: 13px;
+  width: 1px;
   background: #ddd;
   z-index: 1;
 }
 /* bullets */
-ol.list-bullets li:before {
+ol li:before {
   content: counter(listNumbering);
   position: absolute;
-  top: 18px;
+  top: 14px;
   left: -27px;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background: steelblue;
   border: 2px solid white;
   text-align: center;
   border-radius: 50%;
   z-index: 2;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: bold;
   color: white;
 }
-ol.list-bullets li:first-child:before {
+ol li:first-child:before {
   top: -2px;
 }
-ol.list-bullets li {
+ol li {
   counter-increment: listNumbering;
   position: relative;
-  padding: 20px 0 20px 20px;
+  padding: 15px 0 0 5px;
   text-align: justify;
   z-index: 3;
 }
-ol.list-bullets li:first-child {
+ol li:first-child {
   padding-top: 0;
+}
+ul {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  white-space: normal;
+}
+/* bullets */
+ul li:before {
+  position: absolute;
+  top: 14px;
+  left: 0px;
+  font-size: 16px;
+  color: steelblue;
+  content: "\f058";
+  font-family: FontAwesome;
+  font-weight: 300;
+  font-size: 16px;
+  z-index: 2;
+}
+ul li {
+  position: relative;
+  padding: 10px 0 0 30px;
+  text-align: justify;
+  z-index: 3;
 }
 p.explanation {
   color: steelblue;
@@ -123,4 +153,14 @@ p.action {
 }
 .white {
   color: white;
+}
+.center {
+  text-align: center;
+}
+@media (max-width: 768px) {
+  /* Only apply this when the window is small. */
+  .content {
+    margin: 15px 10px 15px 5px;
+    padding: 0;
+  }
 }
