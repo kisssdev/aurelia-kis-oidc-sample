@@ -33,8 +33,8 @@ function configureOpenidPlugin(aurelia: Aurelia): PluginConfiguration {
     reconnectPrompt: loginFunc =>
       iziToast.show({
         title: 'Session expired',
-        message: 'Please reconnect',
-        buttons: [[`<button>Reconnect</button>`, (instance, toast) => loginFunc(), true]]
+        message: 'Please sign in again.',
+        buttons: [[`<button>Sign in</button>`, (instance, toast) => loginFunc(), true]]
       }),
     userManagerSettings: {
       // Azure B2C
