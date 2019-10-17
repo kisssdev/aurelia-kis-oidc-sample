@@ -29,7 +29,7 @@ export function configure(aurelia: Aurelia) {
 function configureOpenidPlugin(aurelia: Aurelia): PluginConfiguration {
   const webSiteUrl = 'http://localhost:5000';
   return {
-    userIdClaimSelector: profile => profile.emails[0],
+    userIdClaimSelector: profile => (profile != null && profile.emails != null && profile.emails.length > 0) ? profile.emails[0] : profile.name,
     reconnectPrompt: loginFunc =>
       iziToast.show({
         title: 'Session expired',
