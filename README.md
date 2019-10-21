@@ -17,6 +17,14 @@
    npm install
    ```
 
+1. Configure the OpenID Connect parameters.
+
+   OpenID configuration parameters are stored in the `configureOpenidPlugin` function of the [main.ts](./src/main.ts). You need to configure at least:
+
+   - the `authority` url of your identity provider,
+   - the `client_id` of your application,
+   - the `scope` in case your are calling a protected web api.
+
 1. Run the application.
 
    ```bash
@@ -25,4 +33,4 @@
 
 ## See it in action
 
-If you prefer, you can this see this application in live [here](https://aureliakisoidc.z16.web.core.windows.net/).
+If you want to check the behavior of the application, you can see it in action [here](https://aureliakisoidc.z16.web.core.windows.net/).
